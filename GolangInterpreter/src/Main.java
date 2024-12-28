@@ -21,5 +21,35 @@ class GoInterpreter {
         if (line.startsWith("var ")) {
             System.out.println("Variable declaration: " + line);
         }
+        handleVariableDeclaration(line);
+    } else if (line.startsWith("if ")) {
+        System.out.println("If statement: " + line); // Debug
+        handleIfStatement();
+    } else if (line.startsWith("for ")) {
+        System.out.println("For loop: " + line); // Debug
+        handleForLoop();
+    } else if (line.contains("=")) {
+        System.out.println("Assignment: " + line); // Debug
+        handleAssignment(line);
+    }
+
+private void handleVariableDeclaration(String line) {
+    String[] parts = line.substring(4).split("=");
+    if (parts.length == 2) {
+        String varName = parts[0].trim();
+        int value = evaluateExpression(parts[1].trim());
+        variables.put(varName, value);
+        System.out.println("Variable " + varName + " = " + value); // Debug
     }
 }
+
+private void handleAssignment(String line) {
+    String[] parts = line.split("=");
+    if (parts.length == 2) {
+        String varName = parts[0].trim();
+        int value = evaluateExpression(parts[1].trim());
+        variables.put(varName, value);
+        System.out.println("Assignment " + varName + " = " + value); // Debug
+    }
+   }
+  }

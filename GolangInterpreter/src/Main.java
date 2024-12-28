@@ -42,14 +42,4 @@ private void handleVariableDeclaration(String line) {
         System.out.println("Variable " + varName + " = " + value); // Debug
     }
 }
-
-private void handleAssignment(String line) {
-    String[] parts = line.split("=");
-    if (parts.length == 2) {
-        String varName = parts[0].trim();
-        int value = evaluateExpression(parts[1].trim());
-        variables.put(varName, value);
-        System.out.println("Assignment " + varName + " = " + value); // Debug for
-    }
    }
-  }

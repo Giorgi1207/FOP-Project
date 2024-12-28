@@ -49,7 +49,7 @@ private void handleAssignment(String line) {
         String varName = parts[0].trim();
         int value = evaluateExpression(parts[1].trim());
         variables.put(varName, value);
-        System.out.println("Assignment " + varName + " = " + value); // Debug
+        System.out.println("Assignment " + varName + " = " + value); // Debug for this
     }
    }
   }

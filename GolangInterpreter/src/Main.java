@@ -41,5 +41,39 @@ private void handleVariableDeclaration(String line) {
         variables.put(varName, value);
         System.out.println("Variable " + varName + " = " + value); // Debug
     }
-}
-   }// Elene
+}private void handleAssignment(String line) {
+        String[] parts = line.split("=");
+        if (parts.length == 2) {
+            String varName = parts[0].trim();
+            int value = evaluateExpression(parts[1].trim());
+            variables.put(varName, value);
+            System.out.println("Assignment " + varName + " = " + value); // Debug
+        }
+    } //Elene
+
+    private void handleIfStatement() {
+        if (currentLine >= code.size() - 1) return;
+
+        String condition = code.get(currentLine).substring(2).trim();
+        System.out.println("If condition: " + condition); // Debug
+        currentLine++;
+
+        List<String> bodyLines = new ArrayList<>();
+        while (currentLine < code.size() && !code.get(currentLine).trim().equals("}")) {
+            String line = code.get(currentLine).trim();
+            if (!line.isEmpty()) {
+                bodyLines.add(line);
+            }
+            currentLine++;
+        }
+
+        boolean conditionResult = evaluateCondition(condition);
+        System.out.println("Condition result: " + conditionResult); // Debug
+
+        if (conditionResult) {
+            for (String line : bodyLines) {
+                interpretLine(line);
+            }
+        }
+    }
+   }// Sandro

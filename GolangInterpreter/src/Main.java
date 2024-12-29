@@ -15,7 +15,7 @@ class GoInterpreter {
             }
             currentLine++;
         }
-    }
+    } // Giorgi
 
     private void interpretLine(String line) {
         if (line.startsWith("var ")) {
@@ -42,4 +42,4 @@ private void handleVariableDeclaration(String line) {
         System.out.println("Variable " + varName + " = " + value); // Debug
     }
 }
-   }
+   }// Elene

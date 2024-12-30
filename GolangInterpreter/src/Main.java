@@ -77,3 +77,41 @@ private void handleVariableDeclaration(String line) {
         }
     }
    }// Sandro
+
+private void handleForLoop() {
+    if (currentLine >= code.size() - 1) return;
+
+    String forLine = code.get(currentLine);
+    String[] forParts = forLine.substring(4, forLine.indexOf("{")).split(";");
+    if (forParts.length != 3) return;
+
+    String init = forParts[0].trim();
+    String condition = forParts[1].trim();
+    String increment = forParts[2].trim();
+
+    System.out.println("For loop init: " + init); // Debug
+    System.out.println("For loop condition: " + condition); // Debug
+    System.out.println("For loop increment: " + increment); // Debug
+
+    interpretLine(init);
+    currentLine++;
+
+    int loopStartLine = currentLine;
+    List<String> bodyLines = new ArrayList<>();
+    while (currentLine < code.size() && !code.get(currentLine).trim().equals("}")) {
+        String line = code.get(currentLine).trim();
+        if (!line.isEmpty()) {
+            bodyLines.add(line);
+        }
+        currentLine++;
+    }
+
+    while (evaluateCondition(condition)) {
+        System.out.println("Loop iteration with condition: " + condition); // Debug
+        for (String line : bodyLines) {
+            interpretLine(line);
+        }
+        interpretLine(increment);
+    }
+}
+     //Elene
